@@ -1,0 +1,6 @@
+wandb/
+weights/
+patch_applier/
+trained_patch/
+data/samples/
+data/samples_labels/

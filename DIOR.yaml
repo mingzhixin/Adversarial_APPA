@@ -1,0 +1,21 @@
+path: "D:/Datasets/DIOR/"
+train: 'images/trainval'
+val: 'images/test'
+
+# Classes as per mentioned in the annotation
+names:
+  0: aircraft
+  1: baseball-diamond
+  2: bridge
+  3: ground-track-field
+  4: small-vehicle
+  5: large-vehicle
+  6: ship
+  7: tennis-court
+  8: basketball-court
+  9: storage-tank
+  10: soccer-ball-field
+  11: roundabout
+  12: harbor
+  13: swimming-pool
+  14: helicopter
