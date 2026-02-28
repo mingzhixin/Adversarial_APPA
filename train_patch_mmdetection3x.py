@@ -101,13 +101,15 @@ class PatchTrainer(object):
                     p_img_batch = F.interpolate(p_img_batch, (img_size, img_size))
                     # print(p_img_batch[0], p_img_batch[0].size())  # Tensor: torch.Size([1, 3, 800, 800])
 
-                    p_img_batch_cpu = p_img_batch.clone()
-                    p_img_batch_cpu = p_img_batch_cpu[0].detach().cpu().numpy()
-                    p_img_batch_cpu = p_img_batch_cpu.reshape(800, 800, 3)
-                    p_img_batch_cpu = p_img_batch_cpu * 255
+                    img = p_img_batch[0, :, :,]
+                    img = transforms.ToPILImage()(img.detach().cpu())
+                    img.save(f"patch_applier/patched_image{epoch}.png")
+                    patch_pil = transforms.ToPILImage()(adv_patch_cpu.detach().cpu())
+                    patch_pil.save(f"patch_applier/patch{epoch}.png")
+                    # adv_batch_t: [B, N, 3, H, W]
+                    patch_t = adv_batch_t[0, 0].detach().cpu()  # 取第1张图第1个目标的patch
+                    transforms.ToPILImage()(patch_t).save("patch_applier/patch_transformed.png")
 
-                    # data = self.InferenceDetector(self.model, p_img_batch_cpu)
-                    # data['img'][0] = p_img_batch
                     output = self.model.get_predictions(p_img_batch, [img_size, img_size], self.config.conf_thres)[0]
                     extracted_prob = self.prob_extractor(output)
 
