@@ -21,7 +21,7 @@ In this paper, a novel adaptive-patch-based physical attack (AP-PA) framework is
 
 ## Requirements:
 
-* Pytorch 1.12
+* Pytorch 1.13.1
 
 * Python 3.8
 
